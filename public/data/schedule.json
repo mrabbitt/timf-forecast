@@ -1,0 +1,219 @@
+{
+    "stages": {
+        "1": "Bridge",
+        "2": "Tunnel",
+        "3": "Silent Disco"
+    },
+    "events": [
+        {
+            "startTime": 1476558000000,
+            "endTime": 1476560700000,
+            "performer": "Worthy",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476563400000,
+            "endTime": 1476566100000,
+            "performer": "HONNE",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476568800000,
+            "endTime": 1476571800000,
+            "performer": "Mura Masa",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476574200000,
+            "endTime": 1476577200000,
+            "performer": "Young Thug",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476580200000,
+            "endTime": 1476583200000,
+            "performer": "Glass Animals",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476585900000,
+            "endTime": 1476588900000,
+            "performer": "ZHU",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476591900000,
+            "endTime": 1476597300000,
+            "performer": "Ice Cube",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476560700000,
+            "endTime": 1476563100000,
+            "performer": "Kamaiyah",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476566100000,
+            "endTime": 1476568500000,
+            "performer": "Sofi Tukker",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476571800000,
+            "endTime": 1476574200000,
+            "performer": "The Polish Ambassador",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476577500000,
+            "endTime": 1476579900000,
+            "performer": "How To Dress Well",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476583200000,
+            "endTime": 1476585900000,
+            "performer": "Flight Facilities",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476588900000,
+            "endTime": 1476591600000,
+            "performer": "Duke Dumont",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476558000000,
+            "endTime": 1476567000000,
+            "performer": "Davey D",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476567000000,
+            "endTime": 1476575100000,
+            "performer": "Ren the Vinyl Archaeologist",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476575100000,
+            "endTime": 1476582300000,
+            "performer": "DJ Dials",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476582300000,
+            "endTime": 1476590400000,
+            "performer": "Motion Potion",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476644400000,
+            "endTime": 1476646800000,
+            "performer": "Day Wave",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476649200000,
+            "endTime": 1476651600000,
+            "performer": "Wild Nothing",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476654300000,
+            "endTime": 1476657000000,
+            "performer": "Christine and the Queens",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476659700000,
+            "endTime": 1476662700000,
+            "performer": "Mac DeMarco",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476665400000,
+            "endTime": 1476668400000,
+            "performer": "Tycho",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476671400000,
+            "endTime": 1476675000000,
+            "performer": "James Blake",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476678000000,
+            "endTime": 1476682500000,
+            "performer": "Sigur Ros",
+            "stageId": "1"
+        },
+        {
+            "startTime": 1476646800000,
+            "endTime": 1476649200000,
+            "performer": "Hinds",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476651600000,
+            "endTime": 1476654000000,
+            "performer": "Car Seat Headrest",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476657000000,
+            "endTime": 1476659400000,
+            "performer": "Deafheaven",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476662700000,
+            "endTime": 1476665100000,
+            "performer": "Neon Indian",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476668400000,
+            "endTime": 1476671100000,
+            "performer": "Sylvan Esso",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476675000000,
+            "endTime": 1476677700000,
+            "performer": "Purity Ring",
+            "stageId": "2"
+        },
+        {
+            "startTime": 1476644400000,
+            "endTime": 1476651600000,
+            "performer": "Split",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476651600000,
+            "endTime": 1476658800000,
+            "performer": "Matt Hubert",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476658800000,
+            "endTime": 1476666000000,
+            "performer": "Manics",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476666000000,
+            "endTime": 1476673200000,
+            "performer": "NVO (live)",
+            "stageId": "3"
+        },
+        {
+            "startTime": 1476673200000,
+            "endTime": 1476680400000,
+            "performer": "Body Party",
+            "stageId": "3"
+        }
+    ]
+}
