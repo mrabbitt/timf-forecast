@@ -3,6 +3,7 @@
     var timeRegex = /(\d{1,2}:\d{2})\s+-\s+(\d{1,2}:\d{2})/;
     $('.ds-event-container').each(function(i, e) {
         var performer = $(this).find('.ds-event-title').text().trim();
+        var url = window.document.location.origin + $(this).find('.ds-event-title a').attr('href');
 
         // Construct start and end time.
         var dayText = $('.ds-arrange > div > span').text().trim();
@@ -26,6 +27,7 @@
             startTime: startTime,
             endTime: endTime,
             performer: performer,
+            url: url,
             stageId: stageId,
         });
     });
@@ -33,7 +35,7 @@
     // FIXME Sort by time?
 
     var eventsJson = JSON.stringify(events);
-    alert(eventsJson);
     console.log(eventsJson);
+    alert('Events written to console.');
 })(window);
 
