@@ -16,6 +16,8 @@
   },
   "homepage": "https://github.com/mrabbitt/timf-forecast#readme",
   "devDependencies": {
-    "gh-pages": "^0.11.0"
+    "cron": "^1.1.1",
+    "gh-pages": "^0.11.0",
+    "log4js": "^0.6.38"
   }
 }
