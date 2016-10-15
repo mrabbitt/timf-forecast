@@ -46,8 +46,9 @@ var fetchForecast = function(destFilePath, successCallback) {
     req.end();
 };
 
-var publishPages = function(dirPath) {
+var publishPages = function(dirPath, commitMessage) {
     ghpages.publish(dirPath, {
+        message: commitMessage,
         logger: function(message) {
             logger.info(message);
          }
@@ -60,7 +61,8 @@ logger.info('Scheduling forecast fetch job to run every 15 minutes.');
 var job = new CronJob('00 0,15,30,45 * * * *', function() {
     logger.info('*** forecast cronjob started.');
     fetchForecast(path.join(__dirname, 'public/data/forecast.json'), function() {
-        publishPages(path.join(__dirname, 'public'));
+        var commitMessage = 'Updated forecast data from Dark Sky at ' + new Date();
+        publishPages(path.join(__dirname, 'public'), commitMessage);
     });
 }, function() {
     logger.info('*** forecast cronjob stopped.');
