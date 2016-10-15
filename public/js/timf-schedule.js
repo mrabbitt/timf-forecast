@@ -1,61 +1,102 @@
-// https://fullcalendar.io/scheduler/license/
-$('#calendar').fullCalendar({
-    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
-});
-
 $(document).ready(function() {
-    $.getJSON('data/schedule.json', function(data) {
-        var events = $.map(data.events, function(event, i) {
-            return {
-                id: 'event-' + i,
-                title: event.performer,
-                start: event.startTime,
-                end: event.endTime,
-                resourceId: event.stageId,
-                url: event.url,
-            };
-        });
-        // TODO load weather events.
+    $('#calendar').fullCalendar({
+        // https://fullcalendar.io/scheduler/license/
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 
-        $('#calendar').fullCalendar({
-            defaultView: 'agendaDay',
-            defaultDate: '2016-10-15',
-            editable: false,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'agendaDay,agendaTwoDay,'
-            },
-            views: {
-                agendaTwoDay: {
-                    type: 'agenda',
-                    duration: { days: 2 },
+        defaultView: 'agendaDay',
+        defaultDate: '2016-10-15',
+        editable: false,
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'agendaDay,agendaTwoDay,'
+        },
+        views: {
+            agendaTwoDay: {
+                type: 'agenda',
+                duration: { days: 2 },
 
-                    // views that are more than a day will NOT do this behavior by default
-                    // so, we need to explicitly enable it
-                    // groupByResource: true
+                // views that are more than a day will NOT do this behavior by default
+                // so, we need to explicitly enable it
+                // groupByResource: true
 
-                    //// uncomment this line to group by day FIRST with resources underneath
-                    groupByDateAndResource: true
+                //// uncomment this line to group by day FIRST with resources underneath
+                groupByDateAndResource: true
+            }
+        },
+
+        eventSources: [
+            {
+                events: function(start, end, timezone, callback) {
+                    $.getJSON('data/schedule.json', function(schedule) {
+                        var events = $.map(schedule.events, function(event, i) {
+                            return {
+                                id: 'event-' + i,
+                                title: event.performer,
+                                start: event.startTime,
+                                end: event.endTime,
+                                resourceId: event.stageId,
+                                url: event.url,
+                                color: '#7baf91',
+                            };
+                        });
+                        callback(events);
+                    });
                 }
             },
-
-            events: events,
-            resources: [
-                { id: 'W', title: 'Weather' },
-                { id: '1', title: data.stages['1'] },
-                { id: '2', title: data.stages['2'] },
-                { id: '3', title: data.stages['3'] },
-            ],
-            groupByDateAndResource: true,
-            timezone: 'local',
-            eventClick: function(event) {
-                if (event.url) {
-                    window.open(event.url);
-                    return false;
-                }
-            },
-        });
+            {
+                events: function(start, end, timezone, callback) {
+                    $.getJSON('data/forecast.json', function(forecast) {
+                        var events = $.map(forecast.hourly.data, function(data, i) {
+                            var text = data.temperature + '°F ' +
+                                       data.summary + '\n' +
+                                       ' 💧' + (data.precipProbability * 100) + '%' +
+                                       ' 🌬' + data.windSpeed + 'mph';
+                            event = {
+                                id: 'forecast-' + i,
+                                title: text,
+                                start: moment(data.time, 'X').local(),
+                                end: moment(data.time + 3600, 'X').local(),
+                                resourceId: 'W',
+                                data: data,
+                                className: 'weather-event',
+                                color: 'grey',
+                            };
+                            return event;
+                        });
+                        callback(events);
+                    });
+                },
+                timezone: 'local',
+            }
+        ],
+        resources: [
+            { id: 'W', title: 'Weather' },
+            { id: '1', title: 'Bridge' },
+            { id: '2', title: 'Tunnel' },
+            { id: '3', title: 'Silent Disco' },
+        ],
+        groupByDateAndResource: true,
+        timezone: 'local',
+        eventClick: function(event) {
+            if (event.url) {
+                window.open(event.url);
+                return false;
+            }
+        },
+        businessHours: {
+            // days of week. an array of zero-based day of week integers (0=Sunday)
+            dow: [6, 0], // Monday - Thursday
+            start: '12:00',
+            end: '23:00',
+        },
+        height: 'auto',
+        eventRender: function (event, element) {
+            if (event.resourceId == 'W') {
+                $(element).find('.fc-time').remove();
+                $(element).find('.fc-bg').css('opacity', event.data.precipProbability);
+            }
+        }
     });
 
 });
