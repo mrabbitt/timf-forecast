@@ -15,16 +15,12 @@ $(document).ready(function() {
             center: 'title',
             right: 'agendaDay,agendaTwoDay,'
         },
+        minTime: '11:00:00',
+        scrollTime: '12:00:00',
         views: {
             agendaTwoDay: {
                 type: 'agenda',
                 duration: { days: 2 },
-
-                // views that are more than a day will NOT do this behavior by default
-                // so, we need to explicitly enable it
-                // groupByResource: true
-
-                //// uncomment this line to group by day FIRST with resources underneath
                 groupByDateAndResource: true
             }
         },
@@ -53,6 +49,13 @@ $(document).ready(function() {
                     $.getJSON('data/forecast.json', function(forecast) {
                         var loadTime = moment(forecast.currently.time, 'X');
                         $('.forecast-last-loaded').text(loadTime.format('MM/DD/YYYY @ h:mm:ss a'));
+                        $('.current-conditions').text(
+                            forecast.currently.summary + ', ' +
+                            forecast.currently.temperature.toFixed(0) + '°F ' +
+                            ', 💧' + (forecast.currently.precipProbability * 100).toFixed(0) + '%' +
+                            ', 🌬' + forecast.currently.windSpeed.toFixed(0) + ' mph'
+                        );
+
 
                         var events = $.map(forecast.hourly.data, function(data, i) {
                             var text = data.temperature.toFixed(0) + '°F ' +
