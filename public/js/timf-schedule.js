@@ -1,42 +1,61 @@
+// https://fullcalendar.io/scheduler/license/
+$('#calendar').fullCalendar({
+    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
+});
+
 $(document).ready(function() {
     $.getJSON('data/schedule.json', function(data) {
-        var sections=[
-            {key: 1, label: "Bridge"},
-            {key: 2, label: "Tunnel"},
-            {key: 3, label: "Silent Disco"},
-        ];
-
-        scheduler.locale.labels.unit_tab = "Persons";
-        scheduler.locale.labels.section_custom = "Assigned to";
-        scheduler.config.first_hour = 11;
-        scheduler.config.multi_day = true;
-        scheduler.config.details_on_dblclick = true;
-        scheduler.config.lightbox.sections=[
-            {name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
-            {name:"custom", height:23, type:"select", options:sections, map_to:"section_id" },
-            {name:"time", height:72, type:"time", map_to:"auto"}
-        ];
-        scheduler.templates.event_class = function(start, end, ev){
-             return 'event-stage-' + ev.section_id;
-        };
-
-        //scheduler.createUnitsView("unit","section_id",sections);
-
-        scheduler.init('scheduler_here', new Date('10/15/2016'), "day");
-
         var events = $.map(data.events, function(event, i) {
             return {
-                id: i,
-                text: event.performer,
-                start_date: event.startTime,
-                end_date: event.endTime,
-                section_id: event.stageId,
+                id: 'event-' + i,
+                title: event.performer,
+                start: event.startTime,
+                end: event.endTime,
+                resourceId: event.stageId,
                 url: event.url,
             };
         });
         // TODO load weather events.
 
-        scheduler.parse(events, 'json');
+        $('#calendar').fullCalendar({
+            defaultView: 'agendaDay',
+            defaultDate: '2016-10-15',
+            editable: false,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'agendaDay,agendaTwoDay,'
+            },
+            views: {
+                agendaTwoDay: {
+                    type: 'agenda',
+                    duration: { days: 2 },
+
+                    // views that are more than a day will NOT do this behavior by default
+                    // so, we need to explicitly enable it
+                    // groupByResource: true
+
+                    //// uncomment this line to group by day FIRST with resources underneath
+                    groupByDateAndResource: true
+                }
+            },
+
+            events: events,
+            resources: [
+                { id: 'W', title: 'Weather' },
+                { id: '1', title: data.stages['1'] },
+                { id: '2', title: data.stages['2'] },
+                { id: '3', title: data.stages['3'] },
+            ],
+            groupByDateAndResource: true,
+            timezone: 'local',
+            eventClick: function(event) {
+                if (event.url) {
+                    window.open(event.url);
+                    return false;
+                }
+            },
+        });
     });
 
 });
