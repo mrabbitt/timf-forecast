@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    if ($(window).width() < 420) {
+        $('#calendar').addClass('narrow');
+    }
+
     $('#calendar').fullCalendar({
         // https://fullcalendar.io/scheduler/license/
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -51,10 +55,10 @@ $(document).ready(function() {
                         $('.forecast-last-loaded').text(loadTime.format('MM/DD/YYYY @ h:mm:ss a'));
 
                         var events = $.map(forecast.hourly.data, function(data, i) {
-                            var text = data.temperature + '°F ' +
+                            var text = data.temperature.toFixed(0) + '°F ' +
                                        data.summary + '\n' +
-                                       ' 💧' + (data.precipProbability * 100) + '%' +
-                                       ' 🌬' + data.windSpeed + 'mph';
+                                       ' 💧' + (data.precipProbability * 100).toFixed(0) + '%' +
+                                       ' 🌬' + data.windSpeed.toFixed(0) + 'mph';
                             event = {
                                 id: 'forecast-' + i,
                                 title: text,
@@ -93,16 +97,21 @@ $(document).ready(function() {
             start: '12:00',
             end: '23:00',
         },
-        height: 'auto',
         eventRender: function (event, element) {
             if (event.resourceId == 'W') {
                 $(element).find('.fc-time').remove();
                 $(element).find('.fc-bg').css('opacity', event.data.precipProbability);
             }
         },
+        height: 'auto',
         viewRender: function(view, element) {
             $('#calendar > div.fc-view-container > div > table').stickyTableHeaders();
         },
+        windowResize: function(view) {
+            if ($(window).width() < 420) {
+                $('#calendar').addClass('narrow');
+            }
+        }
     });
 
 });
