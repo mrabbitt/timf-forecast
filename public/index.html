@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Unofficial Weather Forecast for Treasure Island Music Festival 2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="lib/fullcalendar/dist/fullcalendar.min.css">
     <link rel="stylesheet" href="lib/fullcalendar/dist/fullcalendar.print.css" media="print">
@@ -26,8 +27,11 @@
         }
 
         #calendar {
-            max-width: 900px;
-            margin: 50px auto;
+            margin: 0 auto;
+            width: 100%;
+        }
+        #calendar.narrow .fc-time-grid .fc-slats td {
+            height: 3.0em;
         }
         .weather-event .fc-bg {
             background-color: #00A !important;
