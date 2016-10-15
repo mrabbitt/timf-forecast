@@ -72,8 +72,8 @@ $(document).ready(function() {
         ],
         resources: [
             { id: 'W', title: 'Weather' },
-            { id: '1', title: 'Bridge' },
-            { id: '2', title: 'Tunnel' },
+            { id: '1', title: 'Bridge Stage' },
+            { id: '2', title: 'Tunnel Stage' },
             { id: '3', title: 'Silent Disco' },
         ],
         groupByDateAndResource: true,
@@ -96,7 +96,10 @@ $(document).ready(function() {
                 $(element).find('.fc-time').remove();
                 $(element).find('.fc-bg').css('opacity', event.data.precipProbability);
             }
-        }
+        },
+        viewRender: function(view, element) {
+            $('#calendar > div.fc-view-container > div > table').stickyTableHeaders();
+        },
     });
 
 });

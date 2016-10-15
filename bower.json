@@ -7,6 +7,7 @@
         "jquery": "~3.1.1",
         "moment": "~2.15.1",
         "scheduler": "~4.3.1",
-        "fullcalendar-scheduler": "^1.4.0"
+        "fullcalendar-scheduler": "~1.4.0",
+        "StickyTableHeaders": "~0.1.19"
     }
 }
