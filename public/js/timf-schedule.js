@@ -47,6 +47,9 @@ $(document).ready(function() {
             {
                 events: function(start, end, timezone, callback) {
                     $.getJSON('data/forecast.json', function(forecast) {
+                        var loadTime = moment(forecast.currently.time, 'X');
+                        $('.forecast-last-loaded').text(loadTime.format('MM/DD/YYYY @ h:mm:ss a'));
+
                         var events = $.map(forecast.hourly.data, function(data, i) {
                             var text = data.temperature + '°F ' +
                                        data.summary + '\n' +
