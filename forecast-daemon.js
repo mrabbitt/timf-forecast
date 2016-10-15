@@ -1,9 +1,11 @@
+'use strict';  /*jslint node: true */
 var https = require('https'),
     path = require('path'),
     fs = require('fs'),
     ghpages = require('gh-pages'),
     CronJob = require('cron').CronJob,
     log4js = require('log4js');
+var git = require(path.join(__dirname, '/node_modules/gh-pages/lib/git.js'));
 
 var logger = log4js.getLogger();
 
@@ -60,13 +62,24 @@ var publishPages = function(dirPath, commitMessage) {
 logger.info('Scheduling forecast fetch job to run every 15 minutes.');
 var job = new CronJob('00 0,15,30,45 * * * *', function() {
     logger.info('*** forecast cronjob started.');
-    fetchForecast(path.join(__dirname, 'public/data/forecast.json'), function() {
-        var commitMessage = 'Updated forecast data from Dark Sky at ' + new Date();
-        publishPages(path.join(__dirname, 'public'), commitMessage);
+    git(['pull', '--verbose'], __dirname).then(function(exitCode) {
+        logger.info('Completed git pull: [%s]', exitCode);
+
+        fetchForecast(path.join(__dirname, 'public/data/forecast.json'), function() {
+            var commitMessage = 'Updated forecast data from Dark Sky at ' + new Date();
+            publishPages(path.join(__dirname, 'public'), commitMessage);
+        });
+
+    }, function(exitCode) {
+        logger.error('Git pull failed: [%s]', exitCode.toString());
     });
+
 }, function() {
     logger.info('*** forecast cronjob stopped.');
 },
     true, /* Start the job right now */
     'America/Los_Angeles' /* Time zone of this job. */
 );
+
+
+
