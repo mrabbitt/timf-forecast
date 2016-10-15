@@ -1,23 +1,23 @@
 {
-  "name": "timf-forecast",
-  "version": "1.0.0",
-  "description": "Unofficial weather foreast for Treasure Island Music Festival 2016 schedule",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrabbitt/timf-forecast.git"
-  },
-  "author": "mrabbitt",
-  "license": "CC-BY-NC-ND-4.0",
-  "bugs": {
-    "url": "https://github.com/mrabbitt/timf-forecast/issues"
-  },
-  "homepage": "https://github.com/mrabbitt/timf-forecast#readme",
-  "devDependencies": {
-    "cron": "^1.1.1",
-    "gh-pages": "^0.11.0",
-    "log4js": "^0.6.38"
-  }
+    "name": "timf-forecast",
+    "version": "1.0.0",
+    "description": "Unofficial weather forecast for Treasure Island Music Festival 2016 schedule",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mrabbitt/timf-forecast.git"
+    },
+    "author": "mrabbitt",
+    "license": "CC-BY-NC-ND-4.0",
+    "bugs": {
+        "url": "https://github.com/mrabbitt/timf-forecast/issues"
+    },
+    "homepage": "https://github.com/mrabbitt/timf-forecast#readme",
+    "devDependencies": {
+        "cron": "^1.1.1",
+        "gh-pages": "^0.11.0",
+        "log4js": "^0.6.38"
+    }
 }
