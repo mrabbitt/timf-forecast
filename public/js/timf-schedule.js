@@ -8,7 +8,7 @@ $(document).ready(function() {
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 
         defaultView: 'agendaDay',
-        defaultDate: '2016-10-15',
+        defaultDate: '2016-10-16',
         editable: false,
         header: {
             left: 'prev,next today',
